@@ -1,0 +1,16 @@
+---
+# Only the main Sass file needs front matter so that Jekyll processes it
+---
+@use "sass:color";
+@use "sass:map";
+@use "sass:meta";
+
+// 使用我们自定义的变量与 mixin（现代写法）
+@use "./_sass/minima/variables" as *;
+
+// 复制并内联 minima.scss 的导入内容为 @use 形式
+// 原来：@import "minima/base", "minima/layout", "minima/syntax-highlighting";
+@use "./_sass/minima/base";
+@use "./_sass/minima/layout";
+@use "./_sass/minima/syntax-highlighting";
+

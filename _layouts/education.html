@@ -1,0 +1,37 @@
+---
+layout: default
+---
+<article class="project">
+  <header>
+    <h1>
+      {%- if page.title -%}
+        {{ page.title }}
+      {%- else -%}
+        {{ page.degree }} · {{ page.school }}
+      {%- endif -%}
+    </h1>
+    <p class="project-meta">
+      {%- if page.period -%}<span>{{ page.period }}</span>{%- endif -%}
+      {%- if page.supervisor -%}<span> · Supervisor: {{ page.supervisor }}</span>{%- endif -%}
+      {%- if page.instructors -%}<span> · Instructors: {{ page.instructors | join: ', ' }}</span>{%- endif -%}
+    </p>
+  </header>
+  <section class="project-content">
+    {%- if page.summary -%}
+      <p class="summary">{{ page.summary }}</p>
+    {%- endif -%}
+    {{ content }}
+    {%- if page.details -%}
+      <div class="details">{{ page.details | markdownify }}</div>
+    {%- endif -%}
+    {%- if page.stack -%}
+      <ul class="xp-tags" style="margin-top: 12px;">
+        {%- for tag in page.stack -%}
+        <li><span class="pill">{{ tag }}</span></li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </section>
+</article>
+
+

@@ -1,0 +1,5 @@
+current directory: /Volumes/macOSexternal/Documents/proj/jude-portfolio/vendor/bundle/ruby/3.4.0/gems/sass-embedded-1.93.2/ext/sass
+/opt/homebrew/opt/ruby/bin/ruby -rrubygems /Volumes/macOSexternal/Documents/proj/jude-portfolio/vendor/bundle/ruby/3.4.0/gems/rake-13.3.0/exe/rake RUBYARCHDIR\=/Volumes/macOSexternal/Documents/proj/jude-portfolio/vendor/bundle/ruby/3.4.0/extensions/arm64-darwin-24/3.4.0/sass-embedded-1.93.2 RUBYLIBDIR\=/Volumes/macOSexternal/Documents/proj/jude-portfolio/vendor/bundle/ruby/3.4.0/extensions/arm64-darwin-24/3.4.0/sass-embedded-1.93.2
+gem install --force --install-dir /Volumes/macOSexternal/Documents/proj/jude-portfolio/vendor/bundle/ruby/3.4.0/gems/sass-embedded-1.93.2/ext/sass/ruby --no-document --ignore-dependencies --platform arm64-darwin --version 1.93.2 sass-embedded
+mv /Volumes/macOSexternal/Documents/proj/jude-portfolio/vendor/bundle/ruby/3.4.0/gems/sass-embedded-1.93.2/ext/sass/ruby/gems/sass-embedded-1.93.2-arm64-darwin/ext/sass/dart-sass dart-sass
+rm -rf /Volumes/macOSexternal/Documents/proj/jude-portfolio/vendor/bundle/ruby/3.4.0/gems/sass-embedded-1.93.2/ext/sass/ruby

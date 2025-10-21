@@ -1,0 +1,53 @@
+title: Jude Research Portfolio
+description: >-
+  Researcher portfolio for PhD applications: projects, publications, education, and about.
+baseurl: ""
+url: ""
+
+timezone: "UTC"
+markdown: kramdown
+theme: minima
+
+# Collections
+collections:
+  projects:
+    output: true
+    permalink: /projects/:slug/
+  education:
+    output: true
+    permalink: /education/:slug/
+  about:
+    output: true
+    permalink: /about/:slug/
+  publications:
+    output: true
+    permalink: /publications/:slug/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: project
+  - scope:
+      path: ""
+      type: "education"
+    values:
+      layout: education
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+permalink: pretty
+show_socials: true
+
