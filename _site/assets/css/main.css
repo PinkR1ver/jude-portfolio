@@ -67,8 +67,17 @@ body {
 }
 .sidebar {
   position: sticky;
-  top: 180px; /* 进一步下移，留出更多上方留白 */
+  top: 128px;
   align-self: start;
+}
+[data-layout="education"] .sidebar,
+[data-layout="project"] .sidebar {
+  top: 220px; /* 明显下移，避免贴顶 */
+}
+/* 初始视觉下移：移动左栏内容本身，避免仅 sticky 不起效的错觉 */
+[data-layout="education"] .sidebar .sidebar-inner,
+[data-layout="project"] .sidebar .sidebar-inner {
+  padding-top: 200px;
 }
 .sidebar-inner { display: flex; flex-direction: column; height: calc(100vh - 32px); gap: 16px; padding: 8px 0; }
 .sidebar-footer { margin-top: auto; position: sticky; bottom: 64px; background: linear-gradient(180deg, transparent, rgba(0,0,0,0.02)); padding-top: 8px; }
@@ -417,6 +426,18 @@ section[data-template="experience"] a:active {
 .back-link:hover,
 .back-link:focus { color: color-mix(in oklab, var(--fg) 92%, transparent); text-decoration: none; }
 
+/* 顶部 Back CTA：更大字号与留白，放在侧栏最上方 */
+.back-cta { margin: 0 0 16px; }
+.back-cta { margin: 0 0 16px; margin-left: -6px; }
+.back-cta .back-link { display: inline-block; font-weight: 700; font-size: 1.25rem; letter-spacing: .01em; }
+.back-cta .back-link::before { content: '← '; opacity: .9; }
+
+/* 详情页右侧上移一些，减少顶部内边距 */
+[data-layout="education"] .content,
+[data-layout="project"] .content {
+  padding-top: 100px;
+}
+
 /* 教育标题链接样式：使用正文色，不要蓝色/下划线 */
 section[data-template="experience"] .xp-title .xp-link,
 section[data-template="experience"] .xp-title .xp-link:visited {
@@ -513,9 +534,11 @@ section[data-template="experience"] .xp-tags .pill:active {
 .detail-layout { display: grid; grid-template-columns: 280px 1fr; gap: 32px; align-items: start; }
 .detail-aside { position: sticky; top: 128px; align-self: start; }
 .detail-card { border: 0; border-radius: 0; padding: 0; background: transparent; margin: 0 0 18px; }
+.detail-card + .detail-card { padding-top: 16px; border-top: 1px solid color-mix(in oklab, var(--border) 75%, transparent); }
 .detail-card h3 { margin: 0 0 6px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .10em; color: color-mix(in oklab, var(--muted) 96%, transparent); }
 .detail-meta { list-style: none; padding: 0; margin: 0; }
 .detail-meta li { margin: 6px 0; line-height: 1.55; color: color-mix(in oklab, var(--fg) 80%, transparent); }
+.detail-meta li + li { margin-top: 8px; padding-top: 8px; border-top: 1px dashed color-mix(in oklab, var(--border) 55%, transparent); }
 .detail-meta .k { color: var(--muted); margin-right: 6px; }
 .detail-links { list-style: none; padding: 0; margin: 0; }
 .detail-links li { margin: 6px 0; }
@@ -525,6 +548,10 @@ section[data-template="experience"] .xp-tags .pill:active {
 .detail-toc li { margin: 6px 0; }
 .detail-toc a { color: color-mix(in oklab, var(--muted) 90%, transparent); text-decoration: none; }
 .detail-toc a:hover { color: var(--fg); }
+
+/* 左栏条目视觉强调：每个键值对前增加细导引线，提高扫读 */
+.detail-meta li { position: relative; padding-left: 12px; }
+.detail-meta li::before { content: ""; position: absolute; left: 0; top: 0.9em; width: 6px; height: 1px; background: color-mix(in oklab, var(--muted) 70%, transparent); }
 
 .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--fg); text-decoration: none; font-weight: 600; }
 .btn:hover { border-color: color-mix(in oklab, var(--accent) 60%, var(--border)); color: var(--accent); text-decoration: none; }

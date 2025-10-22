@@ -13,27 +13,27 @@
   <body>
     <div id="spotlight" aria-hidden="true"></div>
     <div id="scroll-progress"></div>
-    <div class="container layout-two-col">
+    <div class="container layout-two-col" data-layout="{{ page.layout | default: 'home' }}">
       <aside class="sidebar">
         {% if page.layout == 'education' %}
           <div class="sidebar-inner">
-            <div class="detail-card">
+            <p class="back-cta reveal"><a href="{{ '/' | relative_url }}#education" class="back-link">Back</a></p>
+            <div class="detail-card reveal">
               <h3>Overview</h3>
               <ul class="detail-meta">
-                {% if page.school %}<li><span class="k">School</span> {{ page.school }}</li>{% endif %}
-                {% if page.degree %}<li><span class="k">Degree</span> {{ page.degree }}</li>{% endif %}
-                {% if page.period %}<li><span class="k">Period</span> {{ page.period }}</li>{% endif %}
-                {% if page.supervisor %}<li><span class="k">Supervisor</span> {{ page.supervisor }}</li>{% endif %}
-                {% if page.instructors %}<li><span class="k">Instructors</span> {{ page.instructors | join: ', ' }}</li>{% endif %}
+                {% if page.school %}<li class="reveal"><span class="k">School</span> {{ page.school }}</li>{% endif %}
+                {% if page.degree %}<li class="reveal"><span class="k">Degree</span> {{ page.degree }}</li>{% endif %}
+                {% if page.period %}<li class="reveal"><span class="k">Period</span> {{ page.period }}</li>{% endif %}
+                {% if page.supervisor %}<li class="reveal"><span class="k">Supervisor</span> {{ page.supervisor }}</li>{% endif %}
+                {% if page.instructors %}<li class="reveal"><span class="k">Instructors</span> {{ page.instructors | join: ', ' }}</li>{% endif %}
               </ul>
-              <p style="margin: 8px 0 0;"><a href="{{ '/' | relative_url }}#education" class="back-link">← Back to Education</a></p>
             </div>
             {% if page.links %}
-            <div class="detail-card">
+            <div class="detail-card reveal">
               <h3>Links</h3>
               <ul class="detail-links">
                 {% for link in page.links %}
-                  <li><a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a></li>
+                  <li class="reveal"><a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a></li>
                 {% endfor %}
               </ul>
             </div>
@@ -41,32 +41,32 @@
           </div>
         {% elsif page.layout == 'project' %}
           <div class="sidebar-inner">
-            <div class="detail-card">
+            <p class="back-cta reveal"><a href="{{ '/' | relative_url }}#projects" class="back-link">Back</a></p>
+            <div class="detail-card reveal">
               <h3>Overview</h3>
               <ul class="detail-meta">
-                {% if page.role %}<li><span class="k">Role</span> {{ page.role }}</li>{% endif %}
-                {% if page.period %}<li><span class="k">Period</span> {{ page.period }}</li>{% endif %}
-                {% if page.tags %}<li><span class="k">Tags</span> {{ page.tags | join: ', ' }}</li>{% endif %}
-                {% if page.status %}<li><span class="k">Status</span> {{ page.status }}</li>{% endif %}
+                {% if page.role %}<li class="reveal"><span class="k">Role</span> {{ page.role }}</li>{% endif %}
+                {% if page.period %}<li class="reveal"><span class="k">Period</span> {{ page.period }}</li>{% endif %}
+                {% if page.tags %}<li class="reveal"><span class="k">Tags</span> {{ page.tags | join: ', ' }}</li>{% endif %}
+                {% if page.status %}<li class="reveal"><span class="k">Status</span> {{ page.status }}</li>{% endif %}
               </ul>
-              <p style="margin: 8px 0 0;"><a href="{{ '/' | relative_url }}#projects" class="back-link">← Back to Projects</a></p>
             </div>
             {% if page.links %}
-            <div class="detail-card">
+            <div class="detail-card reveal">
               <h3>Links</h3>
               <ul class="detail-links">
                 {% for link in page.links %}
-                  <li><a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a></li>
+                  <li class="reveal"><a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a></li>
                 {% endfor %}
               </ul>
             </div>
             {% endif %}
             {% if page.related %}
-            <div class="detail-card">
+            <div class="detail-card reveal">
               <h3>Related</h3>
               <ul class="detail-links">
                 {% for rel in page.related %}
-                  <li><a href="{{ rel.url | relative_url }}">{{ rel.title }}</a></li>
+                  <li class="reveal"><a href="{{ rel.url | relative_url }}">{{ rel.title }}</a></li>
                 {% endfor %}
               </ul>
             </div>
