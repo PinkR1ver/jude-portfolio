@@ -45,22 +45,10 @@
             <div class="detail-card reveal">
               <h3>Overview</h3>
               <ul class="detail-meta">
-                {% if page.role %}<li class="reveal"><span class="k">Role</span> {{ page.role }}</li>{% endif %}
-                {% if page.period %}<li class="reveal"><span class="k">Period</span> {{ page.period }}</li>{% endif %}
+                {% if page.duration %}<li class="reveal"><span class="k">Duration</span> {{ page.duration }}</li>{% endif %}
                 {% if page.tags %}<li class="reveal"><span class="k">Tags</span> {{ page.tags | join: ', ' }}</li>{% endif %}
-                {% if page.status %}<li class="reveal"><span class="k">Status</span> {{ page.status }}</li>{% endif %}
               </ul>
             </div>
-            {% if page.links %}
-            <div class="detail-card reveal">
-              <h3>Links</h3>
-              <ul class="detail-links">
-                {% for link in page.links %}
-                  <li class="reveal"><a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a></li>
-                {% endfor %}
-              </ul>
-            </div>
-            {% endif %}
             {% if page.related %}
             <div class="detail-card reveal">
               <h3>Related</h3>

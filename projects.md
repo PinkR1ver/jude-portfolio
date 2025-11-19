@@ -11,9 +11,10 @@ permalink: /projects/
 {%- for project in sorted -%}
   <li>
     <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
-    {%- if project.summary -%}
-      <p class="summary">{{ project.summary }}</p>
-    {%- endif -%}
+    <p class="project-meta">
+      {%- if project.duration -%}<span>{{ project.duration }}</span>{%- endif -%}
+      {%- if project.tags -%}<span> · {{ project.tags | join: ', ' }}</span>{%- endif -%}
+    </p>
   </li>
 {%- endfor -%}
 </ul>

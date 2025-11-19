@@ -62,22 +62,22 @@ body {
 
 .layout-two-col {
   display: grid;
-  grid-template-columns: 380px 1fr; /* 略加宽左栏 */
-  gap: 176px; /* 大幅增大左右间距 */
+  grid-template-columns: 340px 1fr; /* 略收窄左栏 */
+  gap: 64px; /* 收紧列间距，避免右侧过空 */
 }
 .sidebar {
   position: sticky;
-  top: 128px;
+  top: 96px; /* 提高左侧起始位置 */
   align-self: start;
 }
 [data-layout="education"] .sidebar,
 [data-layout="project"] .sidebar {
-  top: 220px; /* 明显下移，避免贴顶 */
+  top: 112px; /* 教育与项目页左栏位置整体上移 */
 }
-/* 初始视觉下移：移动左栏内容本身，避免仅 sticky 不起效的错觉 */
+/* 调整左栏内边距，避免整体“偏下” */
 [data-layout="education"] .sidebar .sidebar-inner,
 [data-layout="project"] .sidebar .sidebar-inner {
-  padding-top: 200px;
+  padding-top: 24px;
 }
 .sidebar-inner { display: flex; flex-direction: column; height: calc(100vh - 32px); gap: 16px; padding: 8px 0; }
 .sidebar-footer { margin-top: auto; position: sticky; bottom: 64px; background: linear-gradient(180deg, transparent, rgba(0,0,0,0.02)); padding-top: 8px; }
