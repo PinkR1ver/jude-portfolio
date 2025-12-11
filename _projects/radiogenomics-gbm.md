@@ -1,6 +1,6 @@
 ---
 title: Radiogenomic Analysis on Glioblastoma (Lesion Segmentation and Subtype Classification)
-summary: "From routine MRI to molecular insight: segment GBM lesions, distill lesion ROIs into radiomic fingerprints, and predict subtypes to bridge imaging with biology."
+summary: "From routine MRI to molecular insight: segment GBM lesions, distill lesion ROIs into radiomic features, and predict subtypes to bridge imaging with biology."
 tags: [Medical Imaging, Segmentation, Radiomics, GBM, U-Net]
 duration: 2021.09 - 2022.05
 image_dir: /assets/img/project/radiogenomics-gbm
@@ -45,11 +45,11 @@ This project targets radiogenomics analysis for glioblastoma (GBM). The end-to-e
   4) Feature extraction based on human-engineered (conventional radiomics) or deep-learning approaches  
   5) Data analysis, involving machine/deep-learning methods for feature selection, classification, and cross-validation
 
-- Segmentation (U‑Net family)  
-  - Supervised learning with lesion masks; architectures based on U‑Net variants adapted for GBM MRI.  
-  - Robust preprocessing and modality‑aware batching to handle sequence imbalance.  
-  - Outputs include training dynamics and qualitative visualizations for each sequence.
-  - Architecture highlight (with dropout):
+ - Segmentation (U‑Net family)<sup class="ref-sup"><a href="#ref-2">[2]</a></sup>  
+    - Supervised learning with lesion masks; architectures based on U‑Net variants adapted for GBM MRI.  
+    - Robust preprocessing and modality‑aware batching to handle sequence imbalance.  
+    - Outputs include training dynamics and qualitative visualizations for each sequence.
+    - Architecture :
   
     ```python
     import torch
@@ -145,21 +145,20 @@ This project targets radiogenomics analysis for glioblastoma (GBM). The end-to-e
     ```
 
 - Radiomics Feature Extraction  
-  - Extract quantitative features from lesion ROIs; feature families cover intensity, texture, and shape.  
+  - Extract quantitative features from lesion ROIs using the PyRadiomics toolkit<sup class="ref-sup"><a href="#ref-3">[3]</a></sup>; feature families cover intensity, texture, and shape.
 
 
 - Subtype Classification  
   - Train a lightweight MLP on engineered radiomics features to predict GBM molecular subtypes.  
   - A baseline following prior work (Wang 2017) reaches ~92% accuracy on subtype prediction.
 
-- Mutual Information Analysis  
-  - Compute mutual information between radiomics features and gene expression energy to assess relevance and interpretability.
+ 
 
 ### Results
 
 <figure class="results-figure figure-academic">
   <img src="{{ page.image_dir | append: '/Segmentation.gif' | relative_url }}" alt="Segmentation animation (T1 example)" />
-  <figcaption>Segmentation animation</figcaption>
+  <figcaption>Segmentation animation: left = original MRI slice; middle = ground truth; right = model prediction.</figcaption>
 </figure>
 
 #### T1 sequence
@@ -193,8 +192,7 @@ This project targets radiogenomics analysis for glioblastoma (GBM). The end-to-e
   </div>
 </div>
 
-- Classification: an MLP on radiomic features achieves strong subtype discrimination (see repository for ROC/AUC details).  
-- Analysis: mutual information links selected radiomic features to gene expression energy, supporting biological plausibility.
+- Classification: an MLP on radiomic features achieves strong subtype discrimination (see repository for ROC/AUC details).
 
 #### T2 sequence
 
@@ -317,16 +315,15 @@ This project targets radiogenomics analysis for glioblastoma (GBM). The end-to-e
 
 ### Contributions
 
-- End‑to‑end radiogenomics pipeline from MRI segmentation to subtype prediction.  
-- Stable lesion ROI definition improves radiomics robustness; ablations on normalization/PCA ordering.  
-- Interpretability via mutual information linking radiomic features with gene expression energy.  
+- We built and validated a GBM‑oriented, end‑to‑end radiogenomics pipeline: multi‑sequence lesion segmentation → ROI‑based radiomics extraction (PyRadiomics) → subtype classification.  
 
 ### Discussion
 
-- ROI quality strongly impacts downstream subtype classification; better lesion delineation improves radiomics stability.  
-- Feature engineering (normalization/PCA order) affects classifier performance and interpretability; the repo retains both pipelines for comparison.  
-- Limitations: slice‑based training and cohort size constrain generalization; modality imbalance may bias results.  
-- Future directions: 3D/2.5D segmentation, multi‑sequence fusion, cross‑cohort validation, and end‑to‑end multi‑task learning (segmentation + subtype).
+- Multi‑sequence fusion helps segmentation: stacking T1/T2/FLAIR as multi‑channel input improves boundaries and reduces false positives because each sequence contributes complementary contrast (T1 anatomical detail, T2 fluid/edema sensitivity, FLAIR CSF suppression highlighting peritumoral edema).  
+- Limitation (subtype labeling): a patient may express mixed molecular signatures. Our current pipeline assumes single‑label subtype per patient and cannot produce multi‑label predictions. A practical path is to adopt multi‑label learning (sigmoid outputs with thresholding), uncertainty‑aware calibration, or mixture‑of‑subtypes modeling to reflect heterogeneity.  
+- Concrete future directions:  
+  1) 3D segmentation to derive volumetric (3D) radiomics features, potentially improving subtype discrimination over slice‑wise 2D features.  
+  2) Move beyond hand‑crafted radiomics: explore end‑to‑end learning that maps images/ROIs directly to subtype, allowing the network to learn task‑specific representations.  
 
 ### Appendix
 
@@ -334,7 +331,13 @@ This project targets radiogenomics analysis for glioblastoma (GBM). The end-to-e
 
 <ol class="refs">
   <li id="ref-1">Fathi Kazerooni, Anahita, et al. “Imaging Signatures of Glioblastoma Molecular Characteristics: A Radiogenomics Review.” <em>Journal of Magnetic Resonance Imaging</em>, 52(1), 2020, 54–69. DOI: <a href="https://doi.org/10.1002/jmri.26907" target="_blank" rel="noopener">10.1002/jmri.26907</a>.</li>
+  <li id="ref-2">Ronneberger, O., Fischer, P., Brox, T. “U‑Net: Convolutional Networks for Biomedical Image Segmentation.” In: <em>MICCAI 2015</em>, LNCS 9351, pp. 234–241. DOI: <a href="https://doi.org/10.1007/978-3-319-24574-4_28" target="_blank" rel="noopener">10.1007/978-3-319-24574-4_28</a>.</li>
+  <li id="ref-3">van Griethuysen, J. J. M., et al. “Computational Radiomics System to Decode the Radiographic Phenotype.” <em>Cancer Research</em>, 77(21), 2017, e104–e107. DOI: <a href="https://doi.org/10.1158/0008-5472.CAN-17-0339" target="_blank" rel="noopener">10.1158/0008-5472.CAN-17-0339</a>. (PyRadiomics)</li>
 </ol>
+
+#### Thesis
+
+- [My Undergraduate Final Thesis (NUS, PDF)](https://github.com/PinkR1ver/Radiogenomics-GBM/blob/master/Doc/Final%20Thesis%20NUS.pdf)
 
 #### Repository
 

@@ -14,16 +14,16 @@
 <meta property="og:url" content="http://localhost:4000/projects/radiogenomics-gbm/" />
 <meta property="og:site_name" content="Jude Research Portfolio" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-11-20T08:16:19+00:00" />
+<meta property="article:published_time" content="2025-12-09T08:21:49+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Radiogenomic Analysis on Glioblastoma (Lesion Segmentation and Subtype Classification)" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-11-20T08:16:19+00:00","datePublished":"2025-11-20T08:16:19+00:00","description":"Introduction","headline":"Radiogenomic Analysis on Glioblastoma (Lesion Segmentation and Subtype Classification)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/projects/radiogenomics-gbm/"},"url":"http://localhost:4000/projects/radiogenomics-gbm/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-12-09T08:21:49+00:00","datePublished":"2025-12-09T08:21:49+00:00","description":"Introduction","headline":"Radiogenomic Analysis on Glioblastoma (Lesion Segmentation and Subtype Classification)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/projects/radiogenomics-gbm/"},"url":"http://localhost:4000/projects/radiogenomics-gbm/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/main.css?v=1763626579" />
+    <link rel="stylesheet" href="/assets/css/main.css?v=1765268509" />
   </head>
   <body>
     <div id="spotlight" aria-hidden="true"></div>
@@ -95,46 +95,46 @@
 4) Feature extraction based on human-engineered (conventional radiomics) or deep-learning approaches<br />
 5) Data analysis, involving machine/deep-learning methods for feature selection, classification, and cross-validation</p>
   </li>
-  <li>Segmentation (U‑Net family)
+  <li>Segmentation (U‑Net family)<sup class="ref-sup"><a href="#ref-2">[2]</a></sup>
     <ul>
       <li>Supervised learning with lesion masks; architectures based on U‑Net variants adapted for GBM MRI.</li>
       <li>Robust preprocessing and modality‑aware batching to handle sequence imbalance.</li>
       <li>Outputs include training dynamics and qualitative visualizations for each sequence.</li>
-      <li>
-        <p>Architecture highlight (with dropout):</p>
+      <li>Architecture :</li>
+    </ul>
 
-        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">torch</span>
-<span class="kn">from</span> <span class="n">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">import</span> <span class="n">torch</span>
+ <span class="kn">from</span> <span class="n">torch</span> <span class="kn">import</span> <span class="n">nn</span>
     
-<span class="k">class</span> <span class="nc">ConvBlock</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">):</span>
-        <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">()</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">net</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">(</span>
-            <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">reflect</span><span class="sh">"</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="nc">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="nc">Dropout2d</span><span class="p">(</span><span class="n">p</span><span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="nc">LeakyReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">reflect</span><span class="sh">"</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="nc">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="nc">Dropout2d</span><span class="p">(</span><span class="n">p</span><span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="nc">LeakyReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
-        <span class="p">)</span>
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">net</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</code></pre></div>        </div>
+ <span class="k">class</span> <span class="nc">ConvBlock</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
+     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">):</span>
+         <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">()</span>
+         <span class="n">self</span><span class="p">.</span><span class="n">net</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">(</span>
+             <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">reflect</span><span class="sh">"</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
+             <span class="n">nn</span><span class="p">.</span><span class="nc">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
+             <span class="n">nn</span><span class="p">.</span><span class="nc">Dropout2d</span><span class="p">(</span><span class="n">p</span><span class="p">),</span>
+             <span class="n">nn</span><span class="p">.</span><span class="nc">LeakyReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+             <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">reflect</span><span class="sh">"</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
+             <span class="n">nn</span><span class="p">.</span><span class="nc">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
+             <span class="n">nn</span><span class="p">.</span><span class="nc">Dropout2d</span><span class="p">(</span><span class="n">p</span><span class="p">),</span>
+             <span class="n">nn</span><span class="p">.</span><span class="nc">LeakyReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+         <span class="p">)</span>
+     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">:</span>
+         <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">net</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>    </div>
 
-        <ul>
-          <li>Downsampling: strided 3×3 conv (stride=2).</li>
-          <li>Upsampling: nearest‑neighbor upsample ×2 + 1×1 conv to halve channels; concatenate with encoder skip features.</li>
-          <li>Depth: 64 → 128 → 256 → 512 → 1024 (encoder) with symmetric decoder.</li>
-          <li>Output: 1‑channel mask with sigmoid activation.</li>
-          <li>Key change: Dropout2d(p=0.3) in each ConvBlock improves generalization under limited data and reduces overfitting.</li>
-        </ul>
-      </li>
-      <li>
-        <p>Down/Up sampling blocks and overall UNet:</p>
+    <ul>
+      <li>Downsampling: strided 3×3 conv (stride=2).</li>
+      <li>Upsampling: nearest‑neighbor upsample ×2 + 1×1 conv to halve channels; concatenate with encoder skip features.</li>
+      <li>Depth: 64 → 128 → 256 → 512 → 1024 (encoder) with symmetric decoder.</li>
+      <li>Output: 1‑channel mask with sigmoid activation.</li>
+      <li>Key change: Dropout2d(p=0.3) in each ConvBlock improves generalization under limited data and reduces overfitting.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Down/Up sampling blocks and overall UNet:</p>
 
-        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">torch</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">torch</span>
 <span class="kn">from</span> <span class="n">torch</span> <span class="kn">import</span> <span class="n">nn</span>
 <span class="kn">from</span> <span class="n">torch.nn</span> <span class="kn">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span>
     
@@ -195,13 +195,11 @@
         <span class="n">R2</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">c8</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">u3</span><span class="p">(</span><span class="n">R3</span><span class="p">,</span> <span class="n">L2</span><span class="p">))</span>
         <span class="n">R1</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">c9</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">u4</span><span class="p">(</span><span class="n">R2</span><span class="p">,</span> <span class="n">L1</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">act</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">head</span><span class="p">(</span><span class="n">R1</span><span class="p">))</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
+</code></pre></div>    </div>
   </li>
   <li>Radiomics Feature Extraction
     <ul>
-      <li>Extract quantitative features from lesion ROIs; feature families cover intensity, texture, and shape.</li>
+      <li>Extract quantitative features from lesion ROIs using the PyRadiomics toolkit<sup class="ref-sup"><a href="#ref-3">[3]</a></sup>; feature families cover intensity, texture, and shape.</li>
     </ul>
   </li>
   <li>Subtype Classification
@@ -210,18 +208,13 @@
       <li>A baseline following prior work (Wang 2017) reaches ~92% accuracy on subtype prediction.</li>
     </ul>
   </li>
-  <li>Mutual Information Analysis
-    <ul>
-      <li>Compute mutual information between radiomics features and gene expression energy to assess relevance and interpretability.</li>
-    </ul>
-  </li>
 </ul>
 
 <h3 id="results">Results</h3>
 
 <figure class="results-figure figure-academic">
   <img src="/assets/img/project/radiogenomics-gbm/Segmentation.gif" alt="Segmentation animation (T1 example)" />
-  <figcaption>Segmentation animation</figcaption>
+  <figcaption>Segmentation animation: left = original MRI slice; middle = ground truth; right = model prediction.</figcaption>
 </figure>
 
 <h4 id="t1-sequence">T1 sequence</h4>
@@ -257,7 +250,6 @@
 
 <ul>
   <li>Classification: an MLP on radiomic features achieves strong subtype discrimination (see repository for ROC/AUC details).</li>
-  <li>Analysis: mutual information links selected radiomic features to gene expression energy, supporting biological plausibility.</li>
 </ul>
 
 <h4 id="t2-sequence">T2 sequence</h4>
@@ -382,18 +374,17 @@
 <h3 id="contributions">Contributions</h3>
 
 <ul>
-  <li>End‑to‑end radiogenomics pipeline from MRI segmentation to subtype prediction.</li>
-  <li>Stable lesion ROI definition improves radiomics robustness; ablations on normalization/PCA ordering.</li>
-  <li>Interpretability via mutual information linking radiomic features with gene expression energy.</li>
+  <li>We built and validated a GBM‑oriented, end‑to‑end radiogenomics pipeline: multi‑sequence lesion segmentation → ROI‑based radiomics extraction (PyRadiomics) → subtype classification.</li>
 </ul>
 
 <h3 id="discussion">Discussion</h3>
 
 <ul>
-  <li>ROI quality strongly impacts downstream subtype classification; better lesion delineation improves radiomics stability.</li>
-  <li>Feature engineering (normalization/PCA order) affects classifier performance and interpretability; the repo retains both pipelines for comparison.</li>
-  <li>Limitations: slice‑based training and cohort size constrain generalization; modality imbalance may bias results.</li>
-  <li>Future directions: 3D/2.5D segmentation, multi‑sequence fusion, cross‑cohort validation, and end‑to‑end multi‑task learning (segmentation + subtype).</li>
+  <li>Multi‑sequence fusion helps segmentation: stacking T1/T2/FLAIR as multi‑channel input improves boundaries and reduces false positives because each sequence contributes complementary contrast (T1 anatomical detail, T2 fluid/edema sensitivity, FLAIR CSF suppression highlighting peritumoral edema).</li>
+  <li>Limitation (subtype labeling): a patient may express mixed molecular signatures. Our current pipeline assumes single‑label subtype per patient and cannot produce multi‑label predictions. A practical path is to adopt multi‑label learning (sigmoid outputs with thresholding), uncertainty‑aware calibration, or mixture‑of‑subtypes modeling to reflect heterogeneity.</li>
+  <li>Concrete future directions:<br />
+1) 3D segmentation to derive volumetric (3D) radiomics features, potentially improving subtype discrimination over slice‑wise 2D features.<br />
+2) Move beyond hand‑crafted radiomics: explore end‑to‑end learning that maps images/ROIs directly to subtype, allowing the network to learn task‑specific representations.</li>
 </ul>
 
 <h3 id="appendix">Appendix</h3>
@@ -402,7 +393,15 @@
 
 <ol class="refs">
   <li id="ref-1">Fathi Kazerooni, Anahita, et al. “Imaging Signatures of Glioblastoma Molecular Characteristics: A Radiogenomics Review.” <em>Journal of Magnetic Resonance Imaging</em>, 52(1), 2020, 54–69. DOI: <a href="https://doi.org/10.1002/jmri.26907" target="_blank" rel="noopener">10.1002/jmri.26907</a>.</li>
+  <li id="ref-2">Ronneberger, O., Fischer, P., Brox, T. “U‑Net: Convolutional Networks for Biomedical Image Segmentation.” In: <em>MICCAI 2015</em>, LNCS 9351, pp. 234–241. DOI: <a href="https://doi.org/10.1007/978-3-319-24574-4_28" target="_blank" rel="noopener">10.1007/978-3-319-24574-4_28</a>.</li>
+  <li id="ref-3">van Griethuysen, J. J. M., et al. “Computational Radiomics System to Decode the Radiographic Phenotype.” <em>Cancer Research</em>, 77(21), 2017, e104–e107. DOI: <a href="https://doi.org/10.1158/0008-5472.CAN-17-0339" target="_blank" rel="noopener">10.1158/0008-5472.CAN-17-0339</a>. (PyRadiomics)</li>
 </ol>
+
+<h4 id="thesis">Thesis</h4>
+
+<ul>
+  <li><a href="https://github.com/PinkR1ver/Radiogenomics-GBM/blob/master/Doc/Final%20Thesis%20NUS.pdf">My Undergraduate Final Thesis (NUS, PDF)</a></li>
+</ul>
 
 <h4 id="repository">Repository</h4>
 
@@ -425,7 +424,7 @@
     </footer>
     
     <button id="back-to-top" aria-label="Back to top">↑</button>
-    <script src="/assets/js/main.js?v=1763626579" defer></script>
+    <script src="/assets/js/main.js?v=1765268509" defer></script>
   </body>
   </html>
 
