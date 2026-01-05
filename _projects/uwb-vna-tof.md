@@ -25,14 +25,14 @@ This study started as a pragmatic workaround: our UWB device failed, and we wond
 ### Methods
 
 - Principle: VNA and linear superposition (our idea)
-  - VNA 通过扫频连续波（CW）激励被测网络，测得 S 参数（如 \(S_{21}(f)\)），等价于采样获得该线性时不变系统的频率响应 \(H(f)\)。  
-  - UWB 发射—回波链路在小信号条件下近似线性系统：若以多频率正弦叠加构成的宽带信号 \(x(t)=\sum_k A_k \cos(2\pi f_k t+\phi_k)\) 激励系统，则输出 \(y(t)=\sum_k H(f_k) A_k \cos(2\pi f_k t+\phi_k)\)。  
-  - 因此，我们使用 VNA 按频点 \(\{f_k\}\) 扫描，逐点获取 \(H(f_k)\)，将这些频域采样按期望的 UWB 发射谱 \(X(f_k)\) 加权后叠加（即构造 \(Y(f_k)=H(f_k)\,X(f_k)\)），再做 IFFT 得到时间域回波；这等价于“发射了 UWB、接收了 UWB 回波”。  
-  - 该“频域采样 + 线性叠加”的思想，使 VNA 充当“UWB 收发模拟器”：发射端由 \(X(f)\) 定义，信道/目标由 \(H(f)\) 给出，接收端得到 \(Y(f)\) 并通过 IFFT 还原为冲激响应/回波序列。
+  - A VNA excites the device under test with a swept continuous wave (CW) and measures S‑parameters (e.g., \(S_{21}(f)\)), which is equivalent to sampling the frequency response \(H(f)\) of a linear time‑invariant system.  
+  - The UWB transmit–echo chain is approximately linear under small‑signal conditions: if the system is driven by a multi‑tone wideband signal \(x(t)=\sum_k A_k \cos(2\pi f_k t+\phi_k)\), the output is \(y(t)=\sum_k H(f_k) A_k \cos(2\pi f_k t+\phi_k)\).  
+  - Therefore, we sweep over frequency points \(\{f_k\}\) with the VNA to acquire \(H(f_k)\), weight these samples by a desired UWB transmit spectrum \(X(f_k)\) to form \(Y(f_k)=H(f_k)\,X(f_k)\), and then apply an IFFT to obtain the time‑domain echo; this emulates “transmitting UWB and receiving UWB echoes.”  
+  - This frequency‑domain sampling plus linear superposition makes the VNA an “emulated UWB transceiver”: the transmitter is defined by \(X(f)\), the channel/target by \(H(f)\), and the receiver obtains \(Y(f)\) which is converted via IFFT into an impulse response/echo sequence.
 
   <figure class="results-figure figure-academic">
     <img src="{{ page.image_dir | append: '/pipeline-freq-to-time.png' | relative_url }}" alt="Frequency-domain sampling and linear superposition with VNA; IFFT reconstructs time-domain echo for TOF" />
-    <figcaption>VNA‑based UWB emulation pipeline: sample H(f) via sweep, synthesize Y(f)=H(f)·X(f), then IFFT → time‑domain echo.</figcaption>
+    <figcaption>VNA‑based UWB emulation: sweep CW tones, measure S‑parameters, and reconstruct the time‑domain reflected response.</figcaption>
   </figure>
 
 - Frequency → time conversion  

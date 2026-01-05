@@ -14,16 +14,16 @@
 <meta property="og:url" content="http://localhost:4000/projects/uwb-vna-tof/" />
 <meta property="og:site_name" content="Jude Research Portfolio" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-12-09T08:21:49+00:00" />
+<meta property="article:published_time" content="2025-12-12T03:46:34+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="VNA‑Emulated IR‑UWB Radar: Transceiver Simulation and System Delay Calibration for ToF(Time-of-Flight)" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-12-09T08:21:49+00:00","datePublished":"2025-12-09T08:21:49+00:00","description":"Introduction","headline":"VNA‑Emulated IR‑UWB Radar: Transceiver Simulation and System Delay Calibration for ToF(Time-of-Flight)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/projects/uwb-vna-tof/"},"url":"http://localhost:4000/projects/uwb-vna-tof/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-12-12T03:46:34+00:00","datePublished":"2025-12-12T03:46:34+00:00","description":"Introduction","headline":"VNA‑Emulated IR‑UWB Radar: Transceiver Simulation and System Delay Calibration for ToF(Time-of-Flight)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/projects/uwb-vna-tof/"},"url":"http://localhost:4000/projects/uwb-vna-tof/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/main.css?v=1765268509" />
+    <link rel="stylesheet" href="/assets/css/main.css?v=1765511194" />
   </head>
   <body>
     <div id="spotlight" aria-hidden="true"></div>
@@ -76,15 +76,15 @@
 <ul>
   <li>Principle: VNA and linear superposition (our idea)
     <ul>
-      <li>VNA 通过扫频连续波（CW）激励被测网络，测得 S 参数（如 (S_{21}(f))），等价于采样获得该线性时不变系统的频率响应 (H(f))。</li>
-      <li>UWB 发射—回波链路在小信号条件下近似线性系统：若以多频率正弦叠加构成的宽带信号 (x(t)=\sum_k A_k \cos(2\pi f_k t+\phi_k)) 激励系统，则输出 (y(t)=\sum_k H(f_k) A_k \cos(2\pi f_k t+\phi_k))。</li>
-      <li>因此，我们使用 VNA 按频点 ({f_k}) 扫描，逐点获取 (H(f_k))，将这些频域采样按期望的 UWB 发射谱 (X(f_k)) 加权后叠加（即构造 (Y(f_k)=H(f_k)\,X(f_k))），再做 IFFT 得到时间域回波；这等价于“发射了 UWB、接收了 UWB 回波”。</li>
-      <li>该“频域采样 + 线性叠加”的思想，使 VNA 充当“UWB 收发模拟器”：发射端由 (X(f)) 定义，信道/目标由 (H(f)) 给出，接收端得到 (Y(f)) 并通过 IFFT 还原为冲激响应/回波序列。</li>
+      <li>A VNA excites the device under test with a swept continuous wave (CW) and measures S‑parameters (e.g., (S_{21}(f))), which is equivalent to sampling the frequency response (H(f)) of a linear time‑invariant system.</li>
+      <li>The UWB transmit–echo chain is approximately linear under small‑signal conditions: if the system is driven by a multi‑tone wideband signal (x(t)=\sum_k A_k \cos(2\pi f_k t+\phi_k)), the output is (y(t)=\sum_k H(f_k) A_k \cos(2\pi f_k t+\phi_k)).</li>
+      <li>Therefore, we sweep over frequency points ({f_k}) with the VNA to acquire (H(f_k)), weight these samples by a desired UWB transmit spectrum (X(f_k)) to form (Y(f_k)=H(f_k)\,X(f_k)), and then apply an IFFT to obtain the time‑domain echo; this emulates “transmitting UWB and receiving UWB echoes.”</li>
+      <li>This frequency‑domain sampling plus linear superposition makes the VNA an “emulated UWB transceiver”: the transmitter is defined by (X(f)), the channel/target by (H(f)), and the receiver obtains (Y(f)) which is converted via IFFT into an impulse response/echo sequence.</li>
     </ul>
 
     <figure class="results-figure figure-academic">
   <img src="/assets/img/project/uwb-vna-tof/pipeline-freq-to-time.png" alt="Frequency-domain sampling and linear superposition with VNA; IFFT reconstructs time-domain echo for TOF" />
-  <figcaption>VNA‑based UWB emulation pipeline: sample H(f) via sweep, synthesize Y(f)=H(f)·X(f), then IFFT → time‑domain echo.</figcaption>
+  <figcaption>VNA‑based UWB emulation: sweep CW tones, measure S‑parameters, and reconstruct the time‑domain reflected response.</figcaption>
 </figure>
   </li>
   <li>Frequency → time conversion
@@ -197,7 +197,7 @@ Note: system delay differs by setup and must be re‑calibrated when cables/fixt
     </footer>
     
     <button id="back-to-top" aria-label="Back to top">↑</button>
-    <script src="/assets/js/main.js?v=1765268509" defer></script>
+    <script src="/assets/js/main.js?v=1765511194" defer></script>
   </body>
   </html>
 
