@@ -3,19 +3,39 @@ title: About Me
 order: 1
 ---
 
-I'm a software engineer focused on building delightful, accessible web experiences. I care about performance, thoughtful motion, and creating interfaces that feel alive without getting in your way.
+<div class="about-copy">
+  <p class="about-line reveal">
+    I build <span class="about-signal">AI-native research tools</span> at the edge of biomedical engineering, human-computer interaction, and local-first software.
+  </p>
 
-Recently, I've been exploring design systems, component accessibility, and scalable frontend architectures.
+  <p class="about-line reveal">
+    My work often starts from <span class="about-signal">messy, real-world signals</span>: eye movements, vestibular tests, medical images, clinical reports, coding sessions, study notes, and personal workflows. I like turning those materials into systems that can be inspected, reused, and improved — not just demos that work once.
+  </p>
 
-I believe in crafting interfaces that are both **resilient** and **expressive**. My approach balances clear information hierarchy, subtle motion, and practical implementation details so that products remain understandable and maintainable over time.
+  <p class="about-line reveal">
+    Across my projects, I move between model experiments, data pipelines, interface design, deployment constraints, and documentation. I have built tools for gaze estimation, nystagmus monitoring, vestibular report generation, radiomics workflows, AI coding analytics, personal knowledge systems, and small desktop/mobile products.
+  </p>
 
-Over the past few years, I have:
+  <p class="about-line reveal">
+    What connects these projects is not a single stack. It is a way of working: <span class="about-signal">make the context visible</span>, reduce hidden state, keep the system runnable, and let <span class="about-signal">human judgment stay close</span> to the machine output.
+  </p>
 
-- Shipped and iterated on **component libraries** used across large product surfaces
-- Led **accessibility** initiatives with clear success metrics and guidance
-- Prototyped **micro-interactions** to communicate state changes and intent
-- Coached teams on **performance budgets** and design system adoption
+  <p class="about-line reveal">
+    I am especially interested in biomedical AI and agentic software that remain grounded in real data, real users, and real constraints. For me, good AI systems are not just accurate models; they are workflows people can trust, question, adapt, and carry forward.
+  </p>
+</div>
 
-Beyond work, I enjoy documenting patterns, building small tools, and writing about design‑engineering tradeoffs. When exploring new ideas, I focus on constraints first, then gradually expand the vocabulary of components and interactions.
-
-
+<aside class="about-provenance reveal" aria-label="About text provenance">
+  <div class="provenance-scan" aria-hidden="true"></div>
+  <div class="provenance-grid" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <p class="provenance-kicker">distilled from project context</p>
+  <p class="provenance-body">
+    This portrait was distilled from Jude’s project folders, prototypes, notes, and agent traces — not from a questionnaire.
+  </p>
+  <p class="provenance-signature" aria-label="Signed by Codex after reading project context">
+    <span class="signature-mark">∴</span>
+    <span class="signature-text">read by agents, signed by context</span>
+  </p>
+</aside>
