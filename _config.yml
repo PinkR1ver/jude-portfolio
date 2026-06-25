@@ -1,8 +1,8 @@
 title: Jude Research Portfolio
 description: >-
   Researcher portfolio for PhD applications: projects, publications, education, and about.
-baseurl: ""
-url: ""
+baseurl: "/resume"
+url: "https://www.pinktalk.online"
 
 timezone: "UTC"
 markdown: kramdown
@@ -45,9 +45,9 @@ plugins:
 exclude:
   - Gemfile
   - Gemfile.lock
+  - README.md
   - node_modules
   - vendor
 
 permalink: pretty
 show_socials: true
-

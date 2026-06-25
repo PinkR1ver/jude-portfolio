@@ -76,9 +76,6 @@ title: Home
 
   <ul class="pub-list">
   {%- assign pub_docs = site.publications -%}
-  {%- if pub_docs == nil or pub_docs == empty -%}
-  {%- assign pub_docs = site.collections['publications'].docs -%}
-  {%- endif -%}
   {%- if pub_docs and pub_docs != empty -%}
     {%- assign pub_docs = pub_docs | sort: 'year' | reverse -%}
     {%- for p in pub_docs limit: 9 -%}
@@ -91,7 +88,7 @@ title: Home
       {%- endif -%}
       . <span class="pub-title"><strong>{{ p.title }}</strong></span>.
       {%- if p.venue -%} <em class="pub-venue">{{ p.venue }}</em>{%- endif -%}
-      {%- if p.url -%} <a href="{{ p.url }}" target="_blank" rel="noopener" class="pub-link">link</a>{%- endif -%}
+      {%- if p.url -%} <a href="{{ p.url | relative_url }}" class="pub-link">link</a>{%- endif -%}
     </li>
     {%- endfor -%}
   {%- endif -%}
