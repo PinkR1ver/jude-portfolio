@@ -76,7 +76,7 @@
               {% endif %}
               <h1 class="name">{{ p.name }}</h1>
               <p class="title">{{ p.title }}</p>
-              <p class="tagline">{{ site.description }}</p>
+              <p class="tagline">{{ p.tagline | default: site.description }}</p>
               {% if p.cv_pdf_url %}
               <a class="cv-link" href="{{ p.cv_pdf_url | relative_url }}" target="_blank" rel="noopener">
                 <span>View Academic CV</span>
@@ -133,4 +133,3 @@
     <script src="{{ "/assets/js/main.js" | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   </body>
   </html>
-
