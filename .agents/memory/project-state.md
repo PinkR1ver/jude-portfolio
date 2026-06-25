@@ -16,3 +16,10 @@
   academic resume PDF generation. It was imported from the local reference
   academic-CV template folder but stripped down to Yichong/Jude Wang's
   information only; do not reintroduce third-party CV content.
+- The web page exposes the generated academic CV PDF at
+  `assets/pdf/yichong-wang-cv.pdf`; regenerate it from `resume-pdf/resume.tex`
+  when PDF content changes.
+- The current web avatar is `assets/img/avatar/jude-camera-grid.jpg`, optimized
+  from the user-provided camera portrait.
+- The homepage uses lightweight CSS/JS fluid motion only; preserve
+  `prefers-reduced-motion` behavior for accessibility.

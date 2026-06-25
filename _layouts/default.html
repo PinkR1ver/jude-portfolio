@@ -12,6 +12,11 @@
   </head>
   <body>
     <div id="spotlight" aria-hidden="true"></div>
+    <div class="fluid-field" aria-hidden="true">
+      <span class="fluid-blob fluid-blob-a"></span>
+      <span class="fluid-blob fluid-blob-b"></span>
+      <span class="fluid-blob fluid-blob-c"></span>
+    </div>
     <div id="scroll-progress"></div>
     <div class="container layout-two-col" data-layout="{{ page.layout | default: 'home' }}">
       <aside class="sidebar">
@@ -64,9 +69,20 @@
           {% assign p = site.data.profile %}
           <div class="sidebar-inner">
             <div class="author-card">
+              {% if p.avatar_url %}
+              <figure class="avatar-orb reveal" style="--reveal-index: 0;">
+                <img src="{{ p.avatar_url | relative_url }}" alt="{{ p.name }} portrait" />
+              </figure>
+              {% endif %}
               <h1 class="name">{{ p.name }}</h1>
               <p class="title">{{ p.title }}</p>
               <p class="tagline">{{ site.description }}</p>
+              {% if p.cv_pdf_url %}
+              <a class="cv-link" href="{{ p.cv_pdf_url | relative_url }}" target="_blank" rel="noopener">
+                <span>View Academic CV</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+              {% endif %}
             </div>
             <nav class="side-nav" aria-label="Section navigation">
               <div class="side-indicator" aria-hidden="true"></div>
@@ -117,5 +133,4 @@
     <script src="{{ "/assets/js/main.js" | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   </body>
   </html>
-
 
