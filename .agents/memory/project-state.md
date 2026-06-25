@@ -19,6 +19,9 @@
 - The web page exposes the generated academic CV PDF at
   `assets/pdf/yichong-wang-cv.pdf`; regenerate it from `resume-pdf/resume.tex`
   when PDF content changes.
+- The Awesome-CV `\cvsection` macro is patched to start with `\par`; keep this
+  guard because otherwise a section following plain text can render inline with
+  the previous paragraph.
 - The current web avatar is `assets/img/avatar/jude-camera-grid.jpg`, optimized
   from the user-provided camera portrait.
 - The homepage uses lightweight CSS/JS fluid motion only; preserve
