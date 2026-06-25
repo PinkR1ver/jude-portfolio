@@ -1,0 +1,52 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+% Awesome CV LaTeX Template for CV/Resume
+% Original template: https://github.com/posquit0/Awesome-CV
+% Template license: CC BY-SA 4.0
+
+\documentclass[11pt, letterpaper]{awesome-cv}
+
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{tabularx,booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularray}
+
+\pdfpagewidth=8.5in
+\pdfpageheight=13in
+\geometry{left=1.5cm, top=1.8cm, right=1.5cm, bottom=1.8cm, footskip=.6cm}
+
+\fontdir[fonts/]
+
+\colorlet{awesome}{awesome-red}
+\definecolor{Mycolor2}{HTML}{0081ff}
+\setbool{acvSectionColorHighlight}{true}
+\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
+
+%-------------------------------------------------------------------------------
+% Personal information
+%-------------------------------------------------------------------------------
+\name{Yichong}{Wang}
+\address{Dept. of Biomedical Engineering, Zhejiang University, Hangzhou, China}
+\homepage{\href{https://pinkr1ver.github.io/resume/}{Portfolio}}
+\email{pinkr1ver@gmail.com}
+\github{PinkR1ver}
+
+\begin{document}
+
+\makecvheader[C]
+
+\makecvfooter
+  {\today}
+  {Yichong Wang}
+  {\thepage}
+
+\input{resume/summary.tex}
+\input{resume/education.tex}
+\input{resume/experience.tex}
+\input{resume/publications.tex}
+\input{resume/honors.tex}
+\input{resume/skills.tex}
+
+\end{document}

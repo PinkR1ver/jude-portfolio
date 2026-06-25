@@ -12,3 +12,7 @@
   `static-root/resume/` mount.
 - Generated `_site/` files are currently noisy in the working tree and should
   not be staged unless the user explicitly asks.
+- `resume-pdf/` stores a sanitized Awesome-CV based LaTeX template for future
+  academic resume PDF generation. It was imported from the local reference
+  academic-CV template folder but stripped down to Yichong/Jude Wang's
+  information only; do not reintroduce third-party CV content.

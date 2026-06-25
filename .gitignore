@@ -1,0 +1,20 @@
+# OS/editor noise
+.DS_Store
+
+# Jekyll local build output
+_site/
+.jekyll-cache/
+.sass-cache/
+
+# Bundler local install path
+vendor/
+
+# LaTeX build artifacts
+resume-pdf/*.aux
+resume-pdf/*.log
+resume-pdf/*.out
+resume-pdf/*.toc
+resume-pdf/*.fls
+resume-pdf/*.fdb_latexmk
+resume-pdf/*.synctex.gz
+resume-pdf/*.pdf

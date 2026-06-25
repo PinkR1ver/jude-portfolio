@@ -22,6 +22,8 @@ site.
    `_about/`, `_education/`, `_projects/`, `_publications/`.
 4. Read `.agents/docs/deployment.md` before changing `baseurl`, `url`, deploy
    workflow assumptions, or generated static artifacts.
+5. Read `resume-pdf/README.md` before changing the academic PDF resume
+   template.
 
 ## Validation
 
@@ -39,3 +41,5 @@ site.
   portfolio visual direction.
 - Do not store secrets or private personal data in `.agents/`.
 - Update `.agents/docs/deployment.md` when the publishing path changes.
+- `resume-pdf/` contains the sanitized Awesome-CV based LaTeX template for
+  future academic PDF generation. Keep it free of third-party CV content.
