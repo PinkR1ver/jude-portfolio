@@ -28,5 +28,5 @@
   `prefers-reduced-motion` behavior for accessibility.
 - The About copy is intentionally written as an AI-native project portrait,
   distilled from the user's project folders, prototypes, notes, and agent traces
-  rather than as a generic academic or job-search bio. The ending provenance
-  stamp should keep this "read from project context" idea visible.
+  rather than as a generic academic or job-search bio. The provenance note should
+  read as a quiet corner signature, not as a prominent sci-fi card.

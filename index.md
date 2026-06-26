@@ -6,12 +6,6 @@ title: Home
 {% assign p = site.data.profile %}
 
 <section id="about" class="measure" data-template="about">
-  {% if p.cv_pdf_url %}
-  <p class="cv-inline-cta reveal">
-    <span>Formal academic version:</span>
-    <a href="{{ p.cv_pdf_url | relative_url }}" target="_blank" rel="noopener">view CV PDF</a>
-  </p>
-  {% endif %}
   {%- assign about_docs = site.about -%}
   {%- if about_docs == nil or about_docs == empty -%}
   {%- assign about_docs = site.collections['about'].docs -%}
