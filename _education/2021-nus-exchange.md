@@ -1,5 +1,6 @@
 ---
 layout: education
+title: Exchange Program (Final Year Project)
 school: National University of Singapore
 degree: Exchange Program (Final Year Project)
 period: 2021 AUG — 2022 MAY
