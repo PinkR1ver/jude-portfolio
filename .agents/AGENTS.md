@@ -40,6 +40,10 @@ site.
 - For visual/UI/content iterations, default to local preview first.
 - After implementing and building, start a local preview server and give the user
   the exact preview URL, such as `http://127.0.0.1:<port>/resume/`.
+- Keep preview work lightweight: after build/local deploy, provide the URL and
+  let the user review by default. Do not spend extra time opening the browser,
+  taking screenshots, or doing deeper visual preview checks unless the user asks
+  to continue preview QA.
 - Do not commit, push, or deploy by default after UI/content changes.
 - Only commit/push/deploy when the user explicitly says so, e.g.
   "commit and push", "deploy", "直接上线", or equivalent.
