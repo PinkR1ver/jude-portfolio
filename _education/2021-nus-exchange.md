@@ -11,8 +11,17 @@ stack:
   - Computer Vision
   - BME
   - ML
+links:
+  - label: NUS Exchange Transcript
+    url: /assets/pdf/transcripts/nus-exchange-transcript.pdf
 ---
 
 Worked on vision-based biomedical analysis during the exchange. Collaborated across labs and contributed to dataset curation and baseline models.
 
+### Selected coursework grades
+
+- Biomedical Engineering Systems — A+
+- Fuzzy/Neural Systems for Intelligent Robotics — A
+- Robot Perception — A-
+- Quantitative Physiology Principles in Bioengineering — B-
 

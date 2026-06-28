@@ -19,6 +19,12 @@
 - The web page exposes the generated academic CV PDF at
   `assets/pdf/yichong-wang-cv.pdf`; regenerate it from `resume-pdf/resume.tex`
   when PDF content changes.
+- Education detail pages link to transcript PDFs stored in this repo under
+  `assets/pdf/transcripts/`. The source copies were imported from the Digital
+  Garden repo at
+  `/Volumes/macOSexternal/Documents/proj/my-digital-garden/content/assets/pdf/`.
+  Keep links baseurl-safe with `relative_url` because the site is served under
+  `/resume/`.
 - The Awesome-CV `\cvsection` macro is patched to start with `\par`; keep this
   guard because otherwise a section following plain text can render inline with
   the previous paragraph.

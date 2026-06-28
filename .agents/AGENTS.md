@@ -35,6 +35,15 @@ site.
 - The Digital Garden validation is separate: it should build without a
   `static-root/resume/` mount and link out to `https://pinkr1ver.github.io/resume/`.
 
+## Preview and Publishing Preference
+
+- For visual/UI/content iterations, default to local preview first.
+- After implementing and building, start a local preview server and give the user
+  the exact preview URL, such as `http://127.0.0.1:<port>/resume/`.
+- Do not commit, push, or deploy by default after UI/content changes.
+- Only commit/push/deploy when the user explicitly says so, e.g.
+  "commit and push", "deploy", "直接上线", or equivalent.
+
 ## Coordination Notes
 
 - Do not make this site look like the Digital Garden; keep the current dark

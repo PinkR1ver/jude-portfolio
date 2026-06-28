@@ -26,6 +26,5 @@ order: 1
 </div>
 
 <aside class="about-provenance" aria-label="About text provenance">
-  <span class="signature-mark" aria-hidden="true">∴</span>
-  <span class="signature-text">distilled from Jude’s project folders, prototypes, notes, and agent traces</span>
+  <span class="signature-text">distilled from project folders, prototypes, notes, and agent traces</span>
 </aside>
