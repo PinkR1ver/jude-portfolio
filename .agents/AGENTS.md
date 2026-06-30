@@ -37,13 +37,32 @@ site.
 
 ## Preview and Publishing Preference
 
-- For visual/UI/content iterations, default to local preview first.
-- After implementing and building, start a local preview server and give the user
-  the exact preview URL, such as `http://127.0.0.1:<port>/resume/`.
-- Keep preview work lightweight: after build/local deploy, provide the URL and
-  let the user review by default. Do not spend extra time opening the browser,
-  taking screenshots, or doing deeper visual preview checks unless the user asks
-  to continue preview QA.
+- For visual/UI/content iterations, the user prefers to run and review the
+  Jekyll server themselves. After making changes, do not start a preview server
+  unless the user explicitly asks for it.
+- When the user wants to run a headless remote preview, the preferred shortcut
+  is:
+
+  ```bash
+  bin/serve-lan
+  ```
+
+  This auto-selects a port, binds Jekyll for LAN access, reads `baseurl` from
+  `_config.yml`, and prints the laptop-ready Tailscale URL.
+- If an agent is explicitly asked to start preview on a headless remote server,
+  it must be reachable from the user's laptop over the shared Tailscale network.
+  Bind Jekyll to all interfaces, for example:
+
+  ```bash
+  bundle exec jekyll serve --host 0.0.0.0 --port <port>
+  ```
+
+  Then get the server's Tailscale IPv4 with `tailscale ip -4` and provide the
+  laptop URL as `http://<tailscale-ip>:<port>/resume/`. Prefer this direct
+  Tailscale URL over SSH local port forwarding.
+- By default, finish with validation results and the command the user can run
+  for review. Do not open browsers, take screenshots, or perform deeper visual
+  preview QA unless the user asks to continue preview QA.
 - Do not commit, push, or deploy by default after UI/content changes.
 - Only commit/push/deploy when the user explicitly says so, e.g.
   "commit and push", "deploy", "直接上线", or equivalent.

@@ -8,6 +8,16 @@
   `_projects/`, and `_publications/`.
 - Deployment is indirect: build this repo, then copy generated output into
   `/Volumes/macOSexternal/Documents/proj/pinkr1ver.github.io/resume/`.
+- Remote/headless preview should be accessible from the user's laptop over the
+  shared Tailscale network: bind Jekyll to `0.0.0.0`, get the server IPv4 with
+  `tailscale ip -4`, and provide `http://<tailscale-ip>:<port>/resume/`.
+- Use `bin/serve-lan` as the preferred remote preview shortcut; it auto-selects
+  a port, reads `baseurl` from `_config.yml`, binds Jekyll for LAN access, and
+  prints the Tailscale URL.
+- The user prefers to run Jekyll preview servers and review UI changes
+  themselves. Agents should not start preview servers after routine changes
+  unless explicitly asked; report validation and provide `bin/serve-lan` as the
+  review command.
 - The Digital Garden links out to the portfolio and no longer hosts it as a
   `static-root/resume/` mount.
 - Generated `_site/` files are currently noisy in the working tree and should

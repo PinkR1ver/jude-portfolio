@@ -9,6 +9,17 @@
 
 ## 本地运行
 
+### 快速开放到 Tailscale 局域网
+
+在 headless remote 上预览时，直接运行：
+
+```bash
+bin/serve-lan
+```
+
+该命令会自动选择可用端口、绑定局域网访问，并打印 laptop 可打开的
+Tailscale URL，例如 `http://<tailscale-ip>:<port>/resume/`。
+
 ### 安装 Homebrew Ruby 并运行
 ```bash
 # 安装/升级 Ruby（arm64 下通常为 /opt/homebrew）
@@ -72,5 +83,4 @@ bundle exec jekyll serve --livereload
 ## 部署
 
 常用方式：GitHub Pages、Netlify、Vercel（静态导出）。
-
 

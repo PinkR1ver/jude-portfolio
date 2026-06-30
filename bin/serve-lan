@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+start_port="${PORT:-4000}"
+
+if [[ -d "$HOME/.rbenv" ]]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init - bash)"
+fi
+
+if ! command -v bundle >/dev/null 2>&1; then
+  echo "Bundler is not available in PATH. Install Ruby/Bundler or load the project's Ruby environment first." >&2
+  exit 1
+fi
+
+baseurl="$(
+  awk -F: '
+    $1 == "baseurl" {
+      value = $2
+      sub(/^[[:space:]]+/, "", value)
+      gsub(/^"|"$/, "", value)
+      print value
+      found = 1
+      exit
+    }
+    END {
+      if (!found) print ""
+    }
+  ' _config.yml
+)"
+baseurl="${baseurl:-/}"
+
+port=""
+for candidate in $(seq "$start_port" "$((start_port + 99))"); do
+  if ! nc -z 127.0.0.1 "$candidate" >/dev/null 2>&1; then
+    port="$candidate"
+    break
+  fi
+done
+
+if [[ -z "$port" ]]; then
+  echo "No available port found from ${start_port} to $((start_port + 99))" >&2
+  exit 1
+fi
+
+tailscale_ip=""
+if command -v tailscale >/dev/null 2>&1; then
+  tailscale_ip="$(tailscale ip -4 2>/dev/null | head -n 1 || true)"
+fi
+
+if [[ -z "$tailscale_ip" ]] && command -v ip >/dev/null 2>&1; then
+  tailscale_ip="$(
+    ip -4 addr show tailscale0 2>/dev/null |
+      awk '/inet / { sub(/\/.*/, "", $2); print $2; exit }' || true
+  )"
+fi
+
+echo "Serving Jude portfolio for local network access"
+echo "  Port: ${port}"
+echo "  Local: http://127.0.0.1:${port}${baseurl}/"
+if [[ -n "$tailscale_ip" ]]; then
+  echo "  Tailscale: http://${tailscale_ip}:${port}${baseurl}/"
+else
+  echo "  Tailscale: unavailable; run 'tailscale ip -4' after Tailscale is connected"
+fi
+echo
+
+bundle exec jekyll serve --host 0.0.0.0 --port "$port"
